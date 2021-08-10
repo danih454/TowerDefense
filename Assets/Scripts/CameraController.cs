@@ -9,6 +9,8 @@ public class CameraController : MonoBehaviour
     public float scrollSpeed = 5f;
     public float minY = 10f;
     public float maxY = 80f;
+    public float minZ = -1000f;
+    public float maxZ = 1000f;
 
     private bool doMovement = true;
 
@@ -24,19 +26,31 @@ public class CameraController : MonoBehaviour
         }
         if(Input.GetKey("w") || Input.mousePosition.y >= Screen.height - panBorderThickness) 
         {
-            transform.Translate(Vector3.forward * panSpeed * Time.deltaTime, Space.World); //Vector3.forward = (0,0,1)
+            if(transform.position.z < 0f)
+            {
+                transform.Translate(Vector3.forward * panSpeed * Time.deltaTime, Space.World); //Vector3.forward = (0,0,1)
+            }            
         } 
         if(Input.GetKey("s") || Input.mousePosition.y <= panBorderThickness) 
         {
-            transform.Translate(Vector3.back * panSpeed * Time.deltaTime, Space.World); //Vector3.forward = (0,0,1)
+            if(transform.position.z > -50f)
+            {
+                transform.Translate(Vector3.back * panSpeed * Time.deltaTime, Space.World); //Vector3.forward = (0,0,1)
+            }            
         } 
         if(Input.GetKey("d") || Input.mousePosition.x >= Screen.width - panBorderThickness) 
         {
-            transform.Translate(Vector3.right * panSpeed * Time.deltaTime, Space.World); //Vector3.forward = (0,0,1)
+            if(transform.position.x < 25f)
+            {
+                transform.Translate(Vector3.right * panSpeed * Time.deltaTime, Space.World); //Vector3.forward = (0,0,1)
+            }            
         } 
         if(Input.GetKey("a") || Input.mousePosition.x <= panBorderThickness) 
         {
-            transform.Translate(Vector3.left * panSpeed * Time.deltaTime, Space.World); //Vector3.forward = (0,0,1)
+            if(transform.position.x > -25f)
+            {
+                transform.Translate(Vector3.left * panSpeed * Time.deltaTime, Space.World); //Vector3.forward = (0,0,1)
+            }            
         } 
 
         float scroll = Input.GetAxis("Mouse ScrollWheel");

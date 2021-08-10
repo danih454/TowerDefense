@@ -24,9 +24,9 @@ public class WaveSpawner : MonoBehaviour
             StartCoroutine(SpawnWave());
             countdown = timeBetweenWaves;
         }
-
-        countdownText.text = Mathf.Round(countdown).ToString();
         countdown -= Time.deltaTime; //time passed since last frame was drawn
+        countdown = Mathf.Clamp(countdown, 0f, Mathf.Infinity);
+        countdownText.text = string.Format("{0:00.00}", countdown);
         
         
     }
