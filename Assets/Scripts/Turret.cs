@@ -5,25 +5,34 @@ using UnityEngine;
 public class Turret : MonoBehaviour
 {
     [Header("Attributes")]
-
-    public float fireRate = 1f;
     public float range = 15f;
 
-    [Header("Unity Setup Fields")]
+    [Header("Use Bullets (default")]
+    public float fireRate = 1f;
+    private float fireCountdown = 0f;
+    public GameObject bulletPrefab;
 
+    [Header("Use Laser")]
+    public bool useLaser = false;
+    public LineRenderer lineRenderer;
+    public ParticleSystem laserImpactEffect;
+    public Light impactLight;
+
+    [Header("Unity Setup Fields")]
     public float rotationSpeed = 10f;
     public string enemyTag = "Enemy";
     public Transform partToRotate;
-    public GameObject bulletPrefab;
+    
     public Transform firePoint;
 
-    private float fireCountdown = 0f;
+    
     private Transform target;
 
 
     void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f); //call update target every 0.5 seconds
+        
     }
 
     void UpdateTarget()
@@ -55,28 +64,63 @@ public class Turret : MonoBehaviour
 
     }
 
+    void LockOnTarget()
+    {
+        Vector3 dir = target.position - transform.position;
+        Quaternion lookRotation = Quaternion.LookRotation(dir); //how to rotate to look in that direction
+        Vector3 rotation = Quaternion.Lerp(partToRotate.transform.rotation, lookRotation, Time.deltaTime * rotationSpeed).eulerAngles;
+        partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+    }
+
     void Update()
     {
         if(target == null)
         {
+            if(useLaser)
+            {
+                if(lineRenderer.enabled)
+                {
+                    lineRenderer.enabled = false;
+                    laserImpactEffect.Stop();
+                    impactLight.enabled = false;
+                }
+            }
+
+
             return;
+        }
+        
+        LockOnTarget();
+        if(useLaser)
+        {
+            Laser();
         }
         else
         {
-            Vector3 dir = target.position - transform.position;
-            Quaternion lookRotation = Quaternion.LookRotation(dir); //how to rotate to look in that direction
-            Vector3 rotation = Quaternion.Lerp(partToRotate.transform.rotation, lookRotation, Time.deltaTime * rotationSpeed).eulerAngles;
-            
-            partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+            if(fireCountdown <= 0f)
+            {            
+                Shoot();
+                fireCountdown = 1f / fireRate;
+            }
+            fireCountdown -= Time.deltaTime;
         }
+        
+    }
 
-        if(fireCountdown <= 0f)
+    void Laser() 
+    {
+        if(!lineRenderer.enabled)
         {
-            Shoot();
-            fireCountdown = 1f / fireRate;
+            lineRenderer.enabled = true;
+            laserImpactEffect.Play();
+            impactLight.enabled = true;
         }
+        lineRenderer.SetPosition(0, firePoint.position);
+        lineRenderer.SetPosition(1, target.position);
 
-        fireCountdown -= Time.deltaTime;
+        Vector3 dir = firePoint.position - target.position;
+        laserImpactEffect.transform.rotation = Quaternion.LookRotation(dir);
+        laserImpactEffect.transform.position = target.position + dir.normalized;
     }
 
     void Shoot() //talking to another script attacheted to an instiated object
