@@ -33,15 +33,15 @@ public class Node : MonoBehaviour
         if(EventSystem.current.IsPointerOverGameObject()) //is mouse over UI element?
         {
             return;
+        } 
+        if (turret != null) //select existing turret/node
+        {
+            Debug.Log("SelectingNode");
+            buildManager.SelectNode(this);
+            return;
         }
         if(!buildManager.CanBuild)
         {
-            return;
-        }
-
-        if (turret != null)
-        {
-            Debug.Log("Cannot build another turret here!");
             return;
         }
         else
@@ -60,6 +60,7 @@ public class Node : MonoBehaviour
         {
             return; 
         }  
+        
         if(buildManager.HasMoney)
         {
             rend.material.color = hoverColor; 

@@ -37,7 +37,7 @@ public class WaveSpawner : MonoBehaviour
             SpawnEnemy();
             yield return new WaitForSeconds(timeBetweenEnemies);
         }
-
+        PlayerStats.Rounds++;
         waveNumber++;
     }
 

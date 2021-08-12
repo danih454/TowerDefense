@@ -7,6 +7,8 @@ public class BuildManager : MonoBehaviour
     public static BuildManager instance;
 
     private TurretBlueprint turretToBuild;
+    private Node selectedNode;
+    public NodeUI nodeUI;
 
     public GameObject standardTurretPrefab;
     public GameObject missileTurretPrefab;
@@ -36,6 +38,16 @@ public class BuildManager : MonoBehaviour
     public void SelectTurretToBuild(TurretBlueprint turret)
     {
         turretToBuild = turret;
+        selectedNode = null;
+    }
+
+    public void SelectNode(Node node)
+    {
+        Debug.Log("In build manager selecting node");
+        selectedNode = node;
+        turretToBuild = null;
+        nodeUI.SetTarget(selectedNode);
+
     }
 
     public void BuildTurretOn(Node node)
