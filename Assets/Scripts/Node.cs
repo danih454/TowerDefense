@@ -10,8 +10,12 @@ public class Node : MonoBehaviour
     private Renderer rend;
     public Vector3 positionOffset;
 
-    [Header("Optional")]
+    [HideInInspector]
     public GameObject turret;
+    [HideInInspector]
+    public TurretBlueprint turretBlueprint;
+    [HideInInspector]
+    public bool turretUpgraded;
 
     BuildManager buildManager;
 
@@ -26,6 +30,45 @@ public class Node : MonoBehaviour
     public Vector3 GetBuildPosition()
     {
         return transform.position + positionOffset;
+    }
+
+    void BuildTurret(TurretBlueprint blueprint)
+    {
+        if(PlayerStats.Money < blueprint.cost)
+        {
+            Debug.Log("Not enough money to build that.");
+            return;
+        }
+        PlayerStats.Money -= blueprint.cost;
+
+        GameObject _turret = (GameObject) Instantiate(blueprint.prefab, GetBuildPosition(), Quaternion.identity);
+        turret = _turret;
+
+        turretBlueprint = blueprint;
+
+        GameObject effect = (GameObject)Instantiate(buildManager.buildEffect, GetBuildPosition(), Quaternion.identity);
+        Destroy(effect, 5f);
+
+        buildManager.BuiltTurret();
+    }
+
+    public void UpgradeTurret()
+    {
+        if(PlayerStats.Money < turretBlueprint.upgradeCost)
+        {
+            Debug.Log("Not enough money to upgrade that.");
+            return;
+        }
+        PlayerStats.Money -= turretBlueprint.upgradeCost;
+
+        Destroy(turret); //get rid of old turret
+
+        GameObject _turret = (GameObject) Instantiate(turretBlueprint.upgradedPrefab, GetBuildPosition(), Quaternion.identity);
+        turret = _turret;
+
+        GameObject effect = (GameObject)Instantiate(buildManager.buildEffect, GetBuildPosition(), Quaternion.identity);
+        Destroy(effect, 5f);
+        turretUpgraded = true;
     }
 
     void OnMouseDown ()
@@ -46,7 +89,8 @@ public class Node : MonoBehaviour
         }
         else
         {
-           buildManager.BuildTurretOn(this);
+           //buildManager.BuildTurretOn(this);
+           BuildTurret(buildManager.GetTurretToBuild());
         }
     }
 
