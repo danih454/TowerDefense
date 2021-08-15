@@ -71,6 +71,16 @@ public class Node : MonoBehaviour
         turretUpgraded = true;
     }
 
+    public void SellTurret()
+    {
+        PlayerStats.Money += turretBlueprint.GetSellAmount();
+
+        GameObject sellEffect = (GameObject) Instantiate(buildManager.sellEffect, GetBuildPosition(), Quaternion.identity);
+        Destroy(sellEffect, 5f);
+        Destroy(turret);
+        turretBlueprint = null;
+    }
+
     void OnMouseDown ()
     {
         if(EventSystem.current.IsPointerOverGameObject()) //is mouse over UI element?
@@ -79,7 +89,6 @@ public class Node : MonoBehaviour
         } 
         if (turret != null) //select existing turret/node
         {
-            Debug.Log("SelectingNode");
             buildManager.SelectNode(this);
             return;
         }
@@ -111,8 +120,6 @@ public class Node : MonoBehaviour
         } else{
             rend.material.color = notEnoughMoneyColor; 
         }
-        
-             
     }
 
     void OnMouseExit ()

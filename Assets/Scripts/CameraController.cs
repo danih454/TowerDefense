@@ -12,7 +12,7 @@ public class CameraController : MonoBehaviour
     public float minZ = -1000f;
     public float maxZ = 1000f;
 
-    private bool doMovement = true;
+    //private bool doMovement = true;
 
     void Update()
     {
@@ -21,14 +21,14 @@ public class CameraController : MonoBehaviour
             this.enabled = false;
             return;
         }
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            doMovement = !doMovement;
-        }
-        if(!doMovement)
-        {
-            return;
-        }
+        // if(Input.GetKeyDown(KeyCode.Escape))
+        // {
+        //     doMovement = !doMovement;
+        // }
+        // if(!doMovement)
+        // {
+        //     return;
+        // }
         if(Input.GetKey("w") || Input.mousePosition.y >= Screen.height - panBorderThickness) 
         {
             if(transform.position.z < 0f)
