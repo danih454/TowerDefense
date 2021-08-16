@@ -15,10 +15,10 @@ public class Enemy : MonoBehaviour
     [Header("Unity Stuff")]
     public Image healthBar;
 
-
     public void Start()
     {
         health = startingHealth;
+        startSpeed = startSpeed + (Random.Range(-50, 51) / 100f);
     }
 
     public void TakeDamage(float amount)
@@ -38,7 +38,8 @@ public class Enemy : MonoBehaviour
         GameObject effect = (GameObject)Instantiate(enemyDeathEffect, transform.position, Quaternion.identity);
         Destroy(effect, 5f);
         PlayerStats.Money += moneyWon;
-        Destroy(gameObject);        
+        Destroy(gameObject);     
+        WaveSpawner.enemiesAlive--;   
     }
 
     public void Slow(float slowAmount)

@@ -91,8 +91,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2c0728851b703ca46a0bd9dc7eb4cddd, type: 2}
-  - {fileID: 2100000, guid: 8c205f1a05351894db214dafdb54e0c0, type: 2}
+  - {fileID: 2100000, guid: f9b496f305d50754c86fc961cf4d80ce, type: 2}
+  - {fileID: 2100000, guid: 6e9518de7fe072e46be549dcf7d1925d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -138,7 +138,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5909827192701425704}
-  m_LocalRotation: {x: -0, y: 0.07427418, z: -0, w: 0.99723786}
+  m_LocalRotation: {x: 0, y: 0.074273795, z: 0, w: 0.9972379}
   m_LocalPosition: {x: 30.901592, y: 0.5, z: -24.784153}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -159,7 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 15
-  fireRate: 1
+  fireRate: 0.8
   bulletPrefab: {fileID: 2254785792064106200, guid: a4df4d9daf4fd704e87082d0a6316bef, type: 3}
   useLaser: 0
   laserDamageOverTime: 30
@@ -261,9 +261,9 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9471b0c1d8fd39b45a83a8b5ac407f87, type: 2}
-  - {fileID: 2100000, guid: 49db340217a2b2d46b424467a53bc4a1, type: 2}
-  - {fileID: 2100000, guid: 0389e7fa19bf28244be286c32677f410, type: 2}
+  - {fileID: 2100000, guid: 0f74ecb2f6816bb478bb04525a9d9828, type: 2}
+  - {fileID: 2100000, guid: f9b496f305d50754c86fc961cf4d80ce, type: 2}
+  - {fileID: 2100000, guid: 6e9518de7fe072e46be549dcf7d1925d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
