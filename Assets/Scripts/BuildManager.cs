@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class BuildManager : MonoBehaviour
 {
@@ -16,6 +18,10 @@ public class BuildManager : MonoBehaviour
 
     public GameObject buildEffect;
     public GameObject sellEffect;
+
+    public Outline standardTurretButton;
+    public Outline missileTurretButton;
+    public Outline laserTurretButton;
 
     public bool CanBuild { get { return turretToBuild != null; } }
     public bool HasMoney { get { return PlayerStats.Money >= turretToBuild.cost; } }
@@ -66,6 +72,15 @@ public class BuildManager : MonoBehaviour
     public void BuiltTurret()
     {
         turretToBuild = null;
+        //auto de-select button in shop
+        DeselectShopButtons();
+    }
+
+    private void DeselectShopButtons()
+    {
+        standardTurretButton.enabled = false;
+        missileTurretButton.enabled = false;
+        laserTurretButton.enabled = false;
     }
 
     public TurretBlueprint GetTurretToBuild()

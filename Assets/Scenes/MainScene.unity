@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2516,6 +2516,9 @@ MonoBehaviour:
     upgradedPrefab: {fileID: 4088714445935651750, guid: f6f9b2c132f4ad74d9a839a3b4061ab7, type: 3}
     upgradeCost: 1000
     sellAmount: 250
+  standardTurretButton: {fileID: 1174254130}
+  missileTurretButton: {fileID: 5121067319621918498}
+  laserTurretButton: {fileID: 1646166850}
 --- !u!1001 &279265889
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10831,6 +10834,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9160247948165284955, guid: 793420c802ffcd14ead58c3d16cb3fa8, type: 3}
   m_PrefabInstance: {fileID: 1169417189}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1174254125 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6030089295650933885, guid: 2b3c2732e9097a54d9526fc3517edef0, type: 3}
+  m_PrefabInstance: {fileID: 6030089294888949935}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1174254130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174254125}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 2, y: 2}
+  m_UseGraphicAlpha: 1
 --- !u!1001 &1177041710
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15376,6 +15399,7 @@ GameObject:
   - component: {fileID: 1646166848}
   - component: {fileID: 1646166847}
   - component: {fileID: 1646166846}
+  - component: {fileID: 1646166850}
   m_Layer: 5
   m_Name: ShopLaserTurretItem
   m_TagString: Untagged
@@ -15517,6 +15541,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1646166844}
   m_CullTransparentMesh: 1
+--- !u!114 &1646166850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646166844}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 2, y: -2}
+  m_UseGraphicAlpha: 1
 --- !u!1001 &1650413656
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17160,6 +17199,9 @@ MonoBehaviour:
   laserTurretPrefab: {fileID: 4088714445935651750, guid: c835811e0bf5299428cd20cd1e5b753c, type: 3}
   buildEffect: {fileID: 8131472090849632318, guid: cf0ff5ed901d3104a981f8c50b6e8071, type: 3}
   sellEffect: {fileID: 114962221635372631, guid: 2aa5da8caffbef5448497093fecd3a52, type: 3}
+  standardTurretButton: {fileID: 1174254130}
+  missileTurretButton: {fileID: 5121067319621918498}
+  laserTurretButton: {fileID: 1646166850}
 --- !u!114 &1780210581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17172,7 +17214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfd8287f37abbdb4fae44412e614c270, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startMoney: 2000
+  startMoney: 10000
   startLives: 3
 --- !u!114 &1780210582
 MonoBehaviour:
@@ -20571,6 +20613,7 @@ GameObject:
   - component: {fileID: 5121067319621918501}
   - component: {fileID: 5121067319621918502}
   - component: {fileID: 5121067319621918503}
+  - component: {fileID: 5121067319621918498}
   m_Layer: 5
   m_Name: ShopMissileTurretItem
   m_TagString: Untagged
@@ -20578,6 +20621,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &5121067319621918498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5121067319621918497}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 2, y: -2}
+  m_UseGraphicAlpha: 1
 --- !u!222 &5121067319621918500
 CanvasRenderer:
   m_ObjectHideFlags: 0

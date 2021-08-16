@@ -19,6 +19,8 @@ public class Node : MonoBehaviour
 
     BuildManager buildManager;
 
+    private bool hovering = false;
+
     void Start ()
     {
         rend = GetComponent<Renderer>(); //lookup once and cache
@@ -98,13 +100,26 @@ public class Node : MonoBehaviour
         }
         else
         {
-           //buildManager.BuildTurretOn(this);
            BuildTurret(buildManager.GetTurretToBuild());
+           rend.material.color = startColor;
+        }
+    }
+
+    void Update()
+    {
+        if(hovering)
+        {
+            //continuously check if money avail
+            if(buildManager.CanBuild && buildManager.HasMoney)
+            {
+                //change hover color
+                rend.material.color = hoverColor;
+            }
         }
     }
 
     void OnMouseEnter ()
-    {
+    {        
         if(EventSystem.current.IsPointerOverGameObject()) //is mouse over UI element?
         {
             return;
@@ -113,7 +128,7 @@ public class Node : MonoBehaviour
         {
             return; 
         }  
-        
+        hovering = true;
         if(buildManager.HasMoney)
         {
             rend.material.color = hoverColor; 
@@ -125,5 +140,6 @@ public class Node : MonoBehaviour
     void OnMouseExit ()
     {
         rend.material.color = startColor;
+        hovering = false;
     }
 }
