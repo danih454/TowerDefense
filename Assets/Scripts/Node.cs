@@ -133,7 +133,7 @@ public class Node : MonoBehaviour
         {
             rend.material.color = hoverColor;
         }
-        else
+        else if(!buildManager.CanBuild)
         {
             rend.material.color = startColor;
         }
