@@ -38,6 +38,7 @@ public class EnemyMovement : MonoBehaviour
 
     void EndPath ()
     {
+        FindObjectOfType<AudioManager>().playEnemyWin();
         PlayerStats.Lives--;
         WaveSpawner.enemiesAlive--;
         Destroy(gameObject);

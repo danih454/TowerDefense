@@ -16,6 +16,8 @@ public class Node : MonoBehaviour
     public TurretBlueprint turretBlueprint;
     [HideInInspector]
     public bool turretUpgraded;
+    [HideInInspector]
+    public bool isSelected = false; //is node UI on
 
     BuildManager buildManager;
 
@@ -39,6 +41,7 @@ public class Node : MonoBehaviour
         if(PlayerStats.Money < blueprint.cost)
         {
             Debug.Log("Not enough money to build that.");
+            buildManager.notEnoughMoney.Play();
             return;
         }
         PlayerStats.Money -= blueprint.cost;
@@ -52,6 +55,7 @@ public class Node : MonoBehaviour
         Destroy(effect, 5f);
 
         buildManager.BuiltTurret();
+        buildManager.SelectNode(this);
     }
 
     public void UpgradeTurret()
@@ -71,6 +75,7 @@ public class Node : MonoBehaviour
         GameObject effect = (GameObject)Instantiate(buildManager.buildEffect, GetBuildPosition(), Quaternion.identity);
         Destroy(effect, 5f);
         turretUpgraded = true;
+        isSelected = false;
     }
 
     public void SellTurret()
@@ -81,6 +86,7 @@ public class Node : MonoBehaviour
         Destroy(sellEffect, 5f);
         Destroy(turret);
         turretBlueprint = null;
+        isSelected = false;
     }
 
     void OnMouseDown ()
@@ -109,12 +115,27 @@ public class Node : MonoBehaviour
     {
         if(hovering)
         {
+            Debug.Log("hovering");
             //continuously check if money avail
             if(buildManager.CanBuild && buildManager.HasMoney)
             {
                 //change hover color
+                Debug.Log("Hover color");
                 rend.material.color = hoverColor;
             }
+            if(buildManager.CanBuild && !buildManager.HasMoney)
+            {
+                Debug.Log("no money color");
+                rend.material.color = notEnoughMoneyColor;
+            }
+        }
+        if(isSelected)
+        {
+            rend.material.color = hoverColor;
+        }
+        else
+        {
+            rend.material.color = startColor;
         }
     }
 

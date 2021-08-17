@@ -18,7 +18,6 @@ public class MenuCamera : MonoBehaviour
     }
     public void LevelSelect()
     {
-        Debug.Log("LevelSelect");
         moveToFirstLocation = false;               
         moveToSecondLocation = true; 
     }
@@ -33,7 +32,6 @@ public class MenuCamera : MonoBehaviour
     {
         if(moveToSecondLocation)
         {
-            Debug.Log("Rotating");
             Quaternion target = Quaternion.Euler(0, levelSelectY, 0);
             transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * smooth);
         }

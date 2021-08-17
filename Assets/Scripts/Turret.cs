@@ -29,16 +29,17 @@ public class Turret : MonoBehaviour
     private Transform target;
     private Enemy enemy;
 
+    // AudioManager audioManager;
+    private bool startLaser = false; //for audio
+
 
     void Start()
     {
-        InvokeRepeating("UpdateTarget", 0f, 0.5f); //call update target every 0.5 seconds
-        
+        InvokeRepeating("UpdateTarget", 0f, 0.5f); //call update target every 0.5 seconds        
     }
 
     void UpdateTarget()
     {
-
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
         float shortestDistance = Mathf.Infinity;
         GameObject nearestEnemy = null;
@@ -80,9 +81,12 @@ public class Turret : MonoBehaviour
             {
                 if(lineRenderer.enabled)
                 {
+                    //stop playing audio
+                    FindObjectOfType<AudioManager>().stopLaser();
                     lineRenderer.enabled = false;
                     laserImpactEffect.Stop();
                     impactLight.enabled = false;
+                    startLaser = true;
                 }
             }
             return;
@@ -91,6 +95,11 @@ public class Turret : MonoBehaviour
         if(useLaser)
         {
             Laser();
+            if(startLaser)
+            {
+                FindObjectOfType<AudioManager>().playLaser();
+                startLaser = false;
+            }
         }
         else
         {
@@ -138,4 +147,5 @@ public class Turret : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);
     }
+
 }

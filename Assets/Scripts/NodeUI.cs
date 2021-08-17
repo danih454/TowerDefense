@@ -10,10 +10,13 @@ public class NodeUI : MonoBehaviour
     public Text upgradeText;
     public Button upgradeButton;
     public Text sellCost;
+    public AudioSource nodeUIButton;
+    public AudioSource deselect;
 
     public void SetTarget(Node _target)
     {
         UI.SetActive(true);
+        nodeUIButton.Play();
         target = _target;
         
         
@@ -40,8 +43,12 @@ public class NodeUI : MonoBehaviour
 
     public void Hide()
     {
-        UI.SetActive(false);
-        target = null;
+        if(UI.activeSelf)
+        {
+            UI.SetActive(false);
+            deselect.Play();
+            target = null;
+        }        
     }
     
     public void Upgrade()

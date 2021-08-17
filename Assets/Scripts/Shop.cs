@@ -14,6 +14,8 @@ public class Shop : MonoBehaviour
     public Outline laserTurretButton;
 
     private Outline selectedOutline;
+    public AudioSource shopButton;
+    public AudioSource deselect;
 
     void Start ()
     {
@@ -25,14 +27,14 @@ public class Shop : MonoBehaviour
     {
         if(!standardTurretButton.enabled)
         {
-            Debug.Log("Selected Standard Turret");
-            // outline button
-            standardTurretButton.enabled = true;
+            playShopButton();
+            standardTurretButton.enabled = true;// outline button
             buildManager.SelectTurretToBuild(standardTurret);
         }
         else
         {
             buildManager.BuiltTurret();
+            playDeselectButton();
             standardTurretButton.enabled = false;
         }
         
@@ -41,7 +43,7 @@ public class Shop : MonoBehaviour
     {
         if(!missileTurretButton.enabled)
         {
-            Debug.Log("Selected Missile Turret");
+            playShopButton();
             //outline button
             missileTurretButton.enabled = true;
             buildManager.SelectTurretToBuild(missileLauncher);
@@ -49,6 +51,7 @@ public class Shop : MonoBehaviour
         else
         {
             buildManager.BuiltTurret();
+            playDeselectButton();
             missileTurretButton.enabled = false;
         }
         
@@ -58,7 +61,7 @@ public class Shop : MonoBehaviour
     {
         if(!laserTurretButton.enabled)
         {
-            Debug.Log("Selected Laser Turret");
+            playShopButton();
             //outline button
             laserTurretButton.enabled = true;
             buildManager.SelectTurretToBuild(laserTurret);
@@ -66,6 +69,7 @@ public class Shop : MonoBehaviour
         else
         {
             buildManager.BuiltTurret();
+            playDeselectButton();
             laserTurretButton.enabled = false;
         }  
 
@@ -76,6 +80,15 @@ public class Shop : MonoBehaviour
         standardTurretButton.enabled = false;
         missileTurretButton.enabled = false;
         laserTurretButton.enabled = false;
+    }
+
+    public void playShopButton()
+    {
+        shopButton.Play();
+    }
+    public void playDeselectButton()
+    {
+        deselect.Play();
     }
 }
 

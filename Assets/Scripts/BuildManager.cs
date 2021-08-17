@@ -22,6 +22,7 @@ public class BuildManager : MonoBehaviour
     public Outline standardTurretButton;
     public Outline missileTurretButton;
     public Outline laserTurretButton;
+    public AudioSource notEnoughMoney;
 
     public bool CanBuild { get { return turretToBuild != null; } }
     public bool HasMoney { get { return PlayerStats.Money >= turretToBuild.cost; } }
@@ -44,7 +45,12 @@ public class BuildManager : MonoBehaviour
 
     public void SelectTurretToBuild(TurretBlueprint turret)
     {
+        Debug.Log("CanBuild!");
         turretToBuild = turret;
+        if(selectedNode != null)
+        {
+            selectedNode.isSelected = false;
+        }
         selectedNode = null;
         nodeUI.Hide();
     }
@@ -54,12 +60,13 @@ public class BuildManager : MonoBehaviour
         if(node == selectedNode)
         {
             DeselectNode();
+            node.isSelected = false;
             return;
         }        
         selectedNode = node;
+        node.isSelected = true;
         turretToBuild = null;
         nodeUI.SetTarget(selectedNode);
-
     }
 
     public void DeselectNode()
@@ -71,7 +78,7 @@ public class BuildManager : MonoBehaviour
     public void BuiltTurret()
     {
         turretToBuild = null;
-        //auto de-select button in shop
+        //auto de-select button in shop        
         DeselectShopButtons();
     }
 

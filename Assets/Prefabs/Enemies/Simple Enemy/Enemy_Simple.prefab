@@ -373,7 +373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a17e94c600144c94281931f5a0877687, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startSpeed: 7
+  startSpeed: 10
   speed: 10
   startingHealth: 100
   enemyDeathEffect: {fileID: 2811161674543505510, guid: 1866b466c5c707b4e94fd93e3ac96c1a, type: 3}
