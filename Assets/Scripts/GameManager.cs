@@ -6,7 +6,9 @@ public class GameManager : MonoBehaviour
 {
     public static bool gameHasEnded;
     public GameObject gameOverUI;
-
+    public GameObject completeLevelUI;
+    public AudioSource levelWon;
+    public int nextLevelInt = 2;
     void Start() 
     {
         gameHasEnded = false;
@@ -32,5 +34,13 @@ public class GameManager : MonoBehaviour
     {
         gameHasEnded = true;
         gameOverUI.SetActive(true);
+    }
+
+    public void WinLevel()
+    {
+        levelWon.Play();
+        gameHasEnded = true;
+        PlayerPrefs.SetInt("levelReached", nextLevelInt);
+        completeLevelUI.SetActive(true);
     }
 }

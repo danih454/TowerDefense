@@ -115,17 +115,13 @@ public class Node : MonoBehaviour
     {
         if(hovering)
         {
-            Debug.Log("hovering");
             //continuously check if money avail
             if(buildManager.CanBuild && buildManager.HasMoney)
             {
-                //change hover color
-                Debug.Log("Hover color");
                 rend.material.color = hoverColor;
             }
             if(buildManager.CanBuild && !buildManager.HasMoney)
             {
-                Debug.Log("no money color");
                 rend.material.color = notEnoughMoneyColor;
             }
         }

@@ -71,6 +71,10 @@
      <Compile Include="Assets\Scripts\Turret.cs" />
      <Compile Include="Assets\Scripts\LivesUI.cs" />
      <Compile Include="Assets\Scripts\NodeUI.cs" />
+     <Compile Include="Assets\Scripts\LevelSelector.cs" />
+     <Compile Include="Assets\Scripts\WavesSurvived.cs" />
+     <Compile Include="Assets\Scripts\LevelWon.cs" />
+     <Compile Include="Assets\Scripts\BackgroundMusic.cs" />
      <None Include="Assets\Fonts\Roboto\LICENSE.txt" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.15f2/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

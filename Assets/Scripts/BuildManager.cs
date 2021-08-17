@@ -45,7 +45,6 @@ public class BuildManager : MonoBehaviour
 
     public void SelectTurretToBuild(TurretBlueprint turret)
     {
-        Debug.Log("CanBuild!");
         turretToBuild = turret;
         if(selectedNode != null)
         {
