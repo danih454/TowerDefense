@@ -8516,7 +8516,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 568aeb7e1072dfd4297aff336ce684ab, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 298acf1576825a848afb3d9b747e7fa2, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -8616,7 +8616,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyWin: {fileID: 963194230}
   laser: {fileID: 963194232}
-  loseGame: {fileID: 0}
   notEnoughMoney: {fileID: 963194234}
 --- !u!82 &963194232
 AudioSource:

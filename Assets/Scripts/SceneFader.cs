@@ -20,6 +20,7 @@ public class SceneFader : MonoBehaviour
 
     IEnumerator FadeIn()
     {
+        Time.timeScale = 1f;
         //play alpha animation
         float t = 1f;
         while(t > 0f)

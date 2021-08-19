@@ -7,7 +7,7 @@ public class GameOver : MonoBehaviour
     public SceneFader sceneFader;
     public string mainMenuSceneName = "MainMenu";
     public AudioSource buttonClick;
-    public AudioSource gameOver;
+    //public AudioSource gameOver;
 
     public void Retry()
     {

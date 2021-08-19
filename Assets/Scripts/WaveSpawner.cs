@@ -20,10 +20,10 @@ public class WaveSpawner : MonoBehaviour
     public GameManager gameManager;
     private bool count = true;
     
-    void Start()
+    void Awake()
     {
         waveText.text = waves.Length.ToString();  
-        Countdown();     
+        StartCoroutine(Countdown());     
     }
     void Update()
     {
@@ -52,7 +52,7 @@ public class WaveSpawner : MonoBehaviour
         }
 
         StartCoroutine(SpawnWave());
-        countdownText.text = "0";
+        countdownText.text = "0";        
     }
     IEnumerator SpawnWave()
     {
@@ -68,7 +68,7 @@ public class WaveSpawner : MonoBehaviour
         }
         count = true;
         PlayerStats.Rounds++;
-        waveNumber++;        
+        waveNumber++;       
     }
 
     void SpawnEnemy(GameObject enemy)

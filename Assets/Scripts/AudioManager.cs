@@ -7,7 +7,7 @@ public class AudioManager : MonoBehaviour
 {
     public AudioSource enemyWin;
     public AudioSource laser;// put laser on turret instead
-    public AudioSource loseGame;
+    //public AudioSource loseGame;
     public AudioSource notEnoughMoney;
     
 
