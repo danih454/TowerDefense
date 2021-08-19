@@ -4,50 +4,51 @@ using UnityEngine;
 
 public class MenuCamera : MonoBehaviour
 {
-    private bool moveToFirstLocation = false;
-    private bool moveToSecondLocation = false;
-
-    private float mainMenuY = (float) -62.868;
-    private float levelSelectY = (float) 25.642;
-    private float smooth = 5.0f;
+    private float levelSelectY = (float) 25;
+    private float helpMenuY = (float) 130;
+    private float creditsY = (float) 224;
+    private float smooth = 10.0f;
     private Quaternion originalRotation;
+    private bool canTurn = true;
 
     void Start()
     {
         originalRotation = transform.rotation;
     }
+    //Button Functions
+    public void MainMenuSelect()
+    {       
+        StartCoroutine(MoveCameraTo(originalRotation));          
+    }
     public void LevelSelect()
     {
-        moveToFirstLocation = false;               
-        moveToSecondLocation = true; 
+        Quaternion target = Quaternion.Euler(0, levelSelectY, 0);
+        StartCoroutine(MoveCameraTo(target)); 
     }
 
-    public void MainMenuSelect()
+    public void HelpSelect()
     {
-        moveToSecondLocation = false;  
-        moveToFirstLocation = true;              
+        Quaternion target = Quaternion.Euler(0, helpMenuY, 0);
+        StartCoroutine(MoveCameraTo(target));
     }
 
-    void Update()
+    public void CreditsSelect()
     {
-        if(moveToSecondLocation)
+        Quaternion target = Quaternion.Euler(0, creditsY, 0);
+        StartCoroutine(MoveCameraTo(target));
+    }
+
+    IEnumerator MoveCameraTo(Quaternion target)
+    {                
+        if(canTurn)
         {
-            Quaternion target = Quaternion.Euler(0, levelSelectY, 0);
-            transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * smooth);
-        }
-        if(transform.rotation.y == levelSelectY)
-        {
-            moveToSecondLocation = false;
-        }
-        if(moveToFirstLocation)
-        {
-            Quaternion target = originalRotation;
-            transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * smooth);
-        }
-        if(transform.rotation.y == mainMenuY)
-        {
-            moveToFirstLocation = false;
-        }
-        
+            canTurn = false;
+            while(!(transform.eulerAngles.y >= target.eulerAngles.y - 0.02f) || !(transform.eulerAngles.y <= target.eulerAngles.y + 0.01f))
+            {
+                transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * smooth);
+                yield return new WaitForSeconds(0.0001f);
+            }
+            canTurn = true;
+        }       
     }
 }

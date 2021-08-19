@@ -9,9 +9,11 @@ public class GameManager : MonoBehaviour
     public GameObject completeLevelUI;
     public AudioSource levelWon;
     public int nextLevelInt = 2;
+    public GameObject shopUI;
     void Start() 
     {
         gameHasEnded = false;
+        Time.timeScale = 1f;
     }
     
     void Update()
@@ -38,9 +40,11 @@ public class GameManager : MonoBehaviour
 
     public void WinLevel()
     {
+
         levelWon.Play();
         gameHasEnded = true;
         PlayerPrefs.SetInt("levelReached", nextLevelInt);
         completeLevelUI.SetActive(true);
+        shopUI.SetActive(false);
     }
 }

@@ -24,7 +24,7 @@ public class CameraController : MonoBehaviour
         
         if(Input.GetKey("w") || Input.mousePosition.y >= Screen.height - panBorderThickness) 
         {
-            if(transform.position.z < 0f)
+            if(transform.position.z < 50f)
             {
                 transform.Translate(Vector3.forward * panSpeed * Time.deltaTime, Space.World); //Vector3.forward = (0,0,1)
             }            

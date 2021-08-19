@@ -5,7 +5,6 @@ using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
-    public AudioSource beatLevel;
     public AudioSource enemyWin;
     public AudioSource laser;// put laser on turret instead
     public AudioSource loseGame;
