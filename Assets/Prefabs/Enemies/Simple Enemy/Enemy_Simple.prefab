@@ -234,7 +234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.0036044943, g: 0.764151, b: 0.0036044943, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -315,7 +315,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f08100a857a9f5242a82eff6bf9a74d5, type: 2}
+  - {fileID: 2100000, guid: 5ea0517b76d608542b9b081e2ca845a9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -374,11 +374,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a17e94c600144c94281931f5a0877687, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startSpeed: 10
+  startSpeed: 7
   speed: 10
-  startingHealth: 100
+  startingHealth: 200
   enemyDeathEffect: {fileID: 2811161674543505510, guid: 1866b466c5c707b4e94fd93e3ac96c1a, type: 3}
-  moneyWon: 25
+  moneyWon: 40
   healthBar: {fileID: 2143667080}
 --- !u!82 &6812845357622099018
 AudioSource:

@@ -69,7 +69,7 @@ public class NodeUI : MonoBehaviour
     {
         if(target != null)
         {
-            if(PlayerStats.Money <= target.turretBlueprint.upgradeCost)
+            if(PlayerStats.Money < target.turretBlueprint.upgradeCost)
             {
                 upgradeButton.interactable = false;
                 upgradeCost.color = Color.gray;

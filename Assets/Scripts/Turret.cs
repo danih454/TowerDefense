@@ -9,7 +9,7 @@ public class Turret : MonoBehaviour
 
     [Header("Use Bullets (default")]
     public float fireRate = 1f;
-    private float fireCountdown = 0f;
+    public float fireCountdown = 0f;
     public GameObject bulletPrefab;
 
     [Header("Use Laser")]
@@ -89,6 +89,7 @@ public class Turret : MonoBehaviour
                     startLaser = true;
                 }
             }
+            fireCountdown -= Time.deltaTime;
             return;
         }        
         LockOnTarget();
@@ -101,16 +102,16 @@ public class Turret : MonoBehaviour
                 startLaser = false;
             }
         }
+        else if(fireCountdown <= 0f)
+        {            
+            Shoot();
+            fireCountdown = 1f / fireRate;
+        }
         else
         {
-            if(fireCountdown <= 0f)
-            {            
-                Shoot();
-                fireCountdown = 1f / fireRate;
-            }
             fireCountdown -= Time.deltaTime;
         }
-        
+
     }
 
     void Laser() 

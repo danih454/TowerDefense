@@ -87,6 +87,7 @@ public class Node : MonoBehaviour
         Destroy(turret);
         turretBlueprint = null;
         isSelected = false;
+        turretUpgraded = false;
     }
 
     void OnMouseDown ()

@@ -22,7 +22,8 @@ public class WaveSpawner : MonoBehaviour
     
     void Start()
     {
-        waveText.text = waves.Length.ToString();        
+        waveText.text = waves.Length.ToString();  
+        Countdown();     
     }
     void Update()
     {
@@ -52,8 +53,6 @@ public class WaveSpawner : MonoBehaviour
 
         StartCoroutine(SpawnWave());
         countdownText.text = "0";
-        // count = false;   
-        
     }
     IEnumerator SpawnWave()
     {
